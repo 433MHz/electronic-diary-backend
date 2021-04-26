@@ -13,12 +13,20 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity(name = "teachers")
 @Getter
 @Setter
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "teacherID")
 public class Teachers {
 
 	@Id
@@ -33,9 +41,11 @@ public class Teachers {
 			joinColumns = @JoinColumn(name = "teacher_id"),
 			inverseJoinColumns = @JoinColumn(name = "subject_id")
 			)
+	@JsonManagedReference
 	private List<Subjects> subjects = new ArrayList<>();
 	
 	@OneToOne(mappedBy = "teacher")
+	@JsonManagedReference
 	private Classes classes;
 	
 }

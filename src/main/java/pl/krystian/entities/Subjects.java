@@ -9,12 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity(name = "subjects")
 @Getter
 @Setter
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "subjectID")
 public class Subjects {
 
 	@Id
@@ -23,5 +30,6 @@ public class Subjects {
 	private String subjectName;
 	
 	@ManyToMany(mappedBy = "subjects")
+	@JsonBackReference
 	private List<Teachers> teachers = new ArrayList<>(); 
 }
