@@ -41,11 +41,9 @@ public class Teachers {
 			joinColumns = @JoinColumn(name = "teacher_id"),
 			inverseJoinColumns = @JoinColumn(name = "subject_id")
 			)
-	@JsonManagedReference
 	private List<Subjects> subjects = new ArrayList<>();
 	
 	@OneToOne(mappedBy = "teacher")
-	@JsonManagedReference
 	private Classes classes;
 	
 }
