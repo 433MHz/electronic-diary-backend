@@ -1,6 +1,7 @@
 package pl.krystian;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,8 +35,8 @@ public class SubjectApi {
 	}
 	
 	@GetMapping("/get/{id}")
-	public Subjects getSubjectById(@PathVariable Long id) {
-		return subjectsRepo.getOne(id);
+	public Optional<Subjects> getSubjectById(@PathVariable Long id) {
+		return subjectsRepo.findById(id);
 	}
 	
 	@DeleteMapping("/remove/{id}")

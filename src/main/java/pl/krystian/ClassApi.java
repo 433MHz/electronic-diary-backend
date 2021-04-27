@@ -1,6 +1,7 @@
 package pl.krystian;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,7 +45,7 @@ public class ClassApi {
 	}
 	
 	@GetMapping("/get/{id}")
-	public Classes getClassesById(@PathVariable Long id) {
-		return classesRepo.getOne(id);
+	public Optional<Classes> getClassesById(@PathVariable Long id) {
+		return classesRepo.findById(id);
 	}
 }

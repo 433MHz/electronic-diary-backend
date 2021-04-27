@@ -30,5 +30,6 @@ public class Subjects {
 	private String subjectName;
 	
 	@ManyToMany(mappedBy = "subjects")
+	@JsonBackReference
 	private List<Teachers> teachers = new ArrayList<>(); 
 }
